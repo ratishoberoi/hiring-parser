@@ -84,17 +84,25 @@ def f01(r):
     require("bengaluru", "F01")(r); require("6", "F01")(r); require("10", "F01")(r)
     require("java", "F01")(r); require("kafka", "F01")(r); require("postgresql", "F01")(r)
     require("kubernetes", "F01")(r); require("hybrid", "F01")(r); require("payments", "F01")(r)
+    must = {str(v).lower() for v in (_key_values(r, {"must_have_skills"}) or [[]])[0]}
+    preferred = {str(v).lower() for v in (_key_values(r, {"preferred_skills"}) or [[]])[0]}
+    _assert("kafka" in must and "postgresql" in must, "F01: core skills must be mandatory")
+    _assert("kubernetes" in preferred, "F01: Kubernetes must be preferred")
 
 
 def f02(r):
     require("3", "F02")(r); require("bangalore", "F02")(r); require("5", "F02")(r); require("8", "F02")(r)
     require("45", "F02")(r); require("55", "F02")(r); require("kafka", "F02")(r); require("java", "F02")(r)
     require("service company", "F02")(r)
+    must = {str(v).lower() for v in (_key_values(r, {"must_have_skills"}) or [[]])[0]}
+    exclusions = {str(v).lower() for v in (_key_values(r, {"exclusions"}) or [[]])[0]}
+    _assert({"java", "kafka"} <= must, "F02: Java and Kafka must be mandatory")
+    _assert(any("service company" in x for x in exclusions), "F02: service company must be excluded")
 
 
 def f03(r):
     # Deliberately vague brief: only role family can be extracted.
-    for phrase in ("backend", "seniority", "experience", "location", "work_mode", "compensation", "headcount"):
+    for phrase in ("seniority_band", "years_experience", "location", "work_mode", "compensation", "headcount"):
         vals = _key_values(r, {phrase})
         if vals:
             _assert(all(v in (None, [], {}, "", "unknown") for v in vals), f"F03: hallucinated {phrase}: {vals}")
@@ -109,6 +117,10 @@ def f04(r):
     _assert("java" not in must and "java" not in preferred, "F04: Java fallback must not be promoted to a requirement")
     # five was explicitly superseded and Bangalore is a preference, not a hard location.
     require("preferred", "F04")(r)
+    years = (_key_values(r, {"years_experience"}) or [None])[0]
+    location = (_key_values(r, {"location"}) or [None])[0]
+    _assert(isinstance(years, dict) and years.get("min") == 7.0 and years.get("max") is None, "F04: final experience must be 7+")
+    _assert(isinstance(location, dict) and location.get("preference") == "preferred", "F04: Bangalore must be preferred")
     for phrase in ("5 years", "5-", '"min": 5', '"minimum": 5'):
         forbid(phrase, "F04")(r)
 
@@ -117,6 +129,12 @@ def f05(r):
     require("backend", "F05")(r); require("pune", "F05")(r); require("4", "F05")(r); require("6", "F05")(r)
     require("python", "F05")(r); require("django", "F05")(r); require("onsite", "F05")(r)
     require("30", "F05")(r); require("remote", "F05")(r)
+    must = {str(v).lower() for v in (_key_values(r, {"must_have_skills"}) or [[]])[0]}
+    preferred = {str(v).lower() for v in (_key_values(r, {"preferred_skills"}) or [[]])[0]}
+    exclusions = {str(v).lower() for v in (_key_values(r, {"exclusions"}) or [[]])[0]}
+    _assert("python" in must and "django" not in must, "F05: Python must be mandatory, Django not mandatory")
+    _assert("django" in preferred, "F05: Django must be preferred")
+    _assert(any("remote" in x for x in exclusions), "F05: remote work must be excluded")
 
 
 def main():
