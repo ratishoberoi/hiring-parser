@@ -1,0 +1,33 @@
+{
+  "role_family": "backend engineering",
+  "job_title": "Senior Backend Engineer",
+  "seniority_band": "senior",
+  "years_experience": {
+    "min": 6.0,
+    "max": 10.0,
+    "raw": "6–10 years"
+  },
+  "must_have_skills": [
+    "Java",
+    "Kotlin",
+    "Kafka",
+    "Distributed systems",
+    "PostgreSQL"
+  ],
+  "preferred_skills": [
+    "Kubernetes"
+  ],
+  "location": {
+    "city": "Bengaluru",
+    "country": null,
+    "preference": "required"
+  },
+  "work_mode": "hybrid",
+  "domain_context": [
+    "fintech",
+    "payments"
+  ],
+  "compensation": null,
+  "headcount": null,
+  "exclusions": []
+}

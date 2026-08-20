@@ -1,0 +1,34 @@
+{
+  "role_family": "backend engineering",
+  "job_title": "Senior Backend Engineer",
+  "seniority_band": "senior",
+  "years_experience": {
+    "min": 5.0,
+    "max": 8.0,
+    "raw": "5-8 yrs"
+  },
+  "must_have_skills": [
+    "Java",
+    "Kafka"
+  ],
+  "preferred_skills": [],
+  "location": {
+    "city": "Bangalore",
+    "country": null,
+    "preference": "required"
+  },
+  "work_mode": null,
+  "domain_context": [],
+  "compensation": {
+    "min": 45.0,
+    "max": 55.0,
+    "currency": "INR",
+    "unit": "LPA",
+    "period": "annual",
+    "upper_bound": false
+  },
+  "headcount": 3,
+  "exclusions": [
+    "service company profiles"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "role_family": "backend engineering",
+  "job_title": "Backend Engineer",
+  "seniority_band": null,
+  "years_experience": {
+    "min": 7.0,
+    "max": null,
+    "raw": "seven, seven plus"
+  },
+  "must_have_skills": [],
+  "preferred_skills": [
+    "Go"
+  ],
+  "location": {
+    "city": "Bangalore",
+    "country": null,
+    "preference": "preferred"
+  },
+  "work_mode": null,
+  "domain_context": [],
+  "compensation": null,
+  "headcount": null,
+  "exclusions": []
+}
