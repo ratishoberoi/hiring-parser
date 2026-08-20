@@ -13,6 +13,7 @@
   "preferred_skills": [
     "Django"
   ],
+  "acceptable_skills": [],
   "location": {
     "city": "Pune",
     "country": null,

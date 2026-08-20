@@ -11,6 +11,9 @@
   "preferred_skills": [
     "Go"
   ],
+  "acceptable_skills": [
+    "Java"
+  ],
   "location": {
     "city": "Bangalore",
     "country": null,

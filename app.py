@@ -1,10 +1,4 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from parser import parse_brief
+"""Compatibility entry point; ``parser.api:app`` is the canonical import."""
+from parser.api import app
 
-app = FastAPI(title="Hiring Brief Parser")
-class ParseRequest(BaseModel): text: str
-@app.post("/parse")
-def parse(request: ParseRequest):
-    try: return {"criteria": parse_brief(request.text)}
-    except (TypeError, ValueError) as exc: raise HTTPException(status_code=400, detail=str(exc))
+__all__ = ["app"]

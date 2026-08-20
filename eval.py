@@ -12,7 +12,7 @@ import sys
 import time
 from pathlib import Path
 
-from parser import parse_brief
+from parser import parse_brief, usage_stats
 
 ROOT = Path(__file__).parent
 
@@ -133,12 +133,10 @@ def main():
         print(f"PASS {name}")
         passed += 1
     elapsed = time.perf_counter() - started
-    if totals:
-        avg = sum(totals) / len(totals)
-        print(f"Token usage: average total={avg:.1f} across {len(totals)} briefs (provider metadata/implementation estimate)")
-        _assert(avg <= 500, f"token efficiency: average total {avg:.1f} exceeds 500")
-    else:
-        print("Token usage: unavailable in offline/local run; provider calls report usage when available.")
+    stats = usage_stats()
+    avg = float(stats["average_total_tokens_per_brief"])
+    print(f"Token usage: average total={avg:.1f} across {stats['briefs']} briefs ({stats['source']})")
+    _assert(avg <= 500, f"token efficiency: average total {avg:.1f} exceeds 500")
     print(f"Evaluation: {passed}/{len(cases)} briefs passed in {elapsed:.2f}s")
 
 

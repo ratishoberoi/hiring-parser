@@ -14,9 +14,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-For live model calls, copy `.env.example` to `.env` (or export the variables)
-and set `GEMINI_API_KEY`. The key is read from the environment and is never
-stored in the repository. The parser reports provider token metadata where the
+For live model calls, export `GEMINI_API_KEY` (a `.env` file may be used with
+your preferred dotenv loader) and optionally `GEMINI_MODEL`. The key is read
+from the environment and is never stored in the repository. The parser reports provider token metadata where the
 API supplies it; otherwise it reports a clearly labelled local approximation.
 
 ## Usage
@@ -43,9 +43,9 @@ curl -X POST http://127.0.0.1:8000/parse \
   -d '{"text":"backend engineer in Pune"}'
 ```
 
-The response is `{"criteria": {...}}`. Empty input, model failures, malformed
-JSON, and invalid schema values produce explicit errors rather than fabricated
-criteria.
+The response is `{"criteria": {...}}`. Empty input yields a schema-valid object
+with unknown fields. Model failures, malformed JSON, and invalid schema values
+fall back to conservative extraction without fabricating unsupported facts.
 
 ## Evaluation
 

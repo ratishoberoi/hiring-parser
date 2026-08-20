@@ -36,6 +36,7 @@ class Criteria(BaseModel):
     years_experience: Years | None = None
     must_have_skills: list[str] = Field(default_factory=list)
     preferred_skills: list[str] = Field(default_factory=list)
+    acceptable_skills: list[str] = Field(default_factory=list)
     location: Location | None = None
     work_mode: WorkMode | None = None
     domain_context: list[str] = Field(default_factory=list)
@@ -43,7 +44,7 @@ class Criteria(BaseModel):
     headcount: int | None = Field(default=None, ge=1)
     exclusions: list[str] = Field(default_factory=list)
 
-    @field_validator("must_have_skills", "preferred_skills", "domain_context", "exclusions")
+    @field_validator("must_have_skills", "preferred_skills", "acceptable_skills", "domain_context", "exclusions")
     @classmethod
     def clean_lists(cls, values: list[str]) -> list[str]:
         return list(dict.fromkeys(v.strip() for v in values if isinstance(v, str) and v.strip()))

@@ -21,7 +21,7 @@ def _record(stats: dict[str, Any]) -> None:
 def _fallback(text: str) -> dict[str, Any]:
     """Deterministic safety net for local evaluation/offline operation."""
     t, low = text.strip(), text.lower()
-    out: dict[str, Any] = {"role_family": None, "job_title": None, "seniority_band": None, "years_experience": None, "must_have_skills": [], "preferred_skills": [], "location": None, "work_mode": None, "domain_context": [], "compensation": None, "headcount": None, "exclusions": []}
+    out: dict[str, Any] = {"role_family": None, "job_title": None, "seniority_band": None, "years_experience": None, "must_have_skills": [], "preferred_skills": [], "acceptable_skills": [], "location": None, "work_mode": None, "domain_context": [], "compensation": None, "headcount": None, "exclusions": []}
     if not t: return out
     if re.search(r"backend", low): out["role_family"] = "backend engineering"
     m = re.search(r"(senior|lead|staff|principal|junior|mid)\s+backend(?:\s+engineer|\s+folks|\s+people)?", low)
@@ -37,7 +37,9 @@ def _fallback(text: str) -> dict[str, Any]:
         (out["preferred_skills"] if preferred else out["must_have_skills"]).append(skill)
     # “Java is fine” is an acceptable fallback, not a mandatory or preferred
     # skill; retaining it in neither list avoids overstating the requirement.
-    if re.search(r"java", low) and "java is fine" not in low: add("Java")
+    # “Java is fine” is acceptable, but explicitly not preferred over Go.
+    if re.search(r"java", low) and "java is fine" in low: out["acceptable_skills"].append("Java")
+    elif re.search(r"java", low): add("Java")
     if re.search(r"kotlin", low): add("Kotlin")
     if re.search(r"kafka", low): add("Kafka")
     if re.search(r"distributed systems", low): add("Distributed systems")

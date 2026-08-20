@@ -3,7 +3,7 @@
 ## Schema
 
 The result keeps role family/title, controlled seniority, an explicit
-experience range, separate mandatory and preferred skill lists, location and
+experience range, separate mandatory, preferred, and acceptable skill lists, location and
 its requirement strength, controlled work mode, domain, compensation, numeric
 headcount, and explicit exclusions. Unknown scalar values are `null` and
 unknown collections are empty; unsupported facts are never filled by inference.

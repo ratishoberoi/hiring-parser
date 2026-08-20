@@ -17,6 +17,7 @@
   "preferred_skills": [
     "Kubernetes"
   ],
+  "acceptable_skills": [],
   "location": {
     "city": "Bengaluru",
     "country": null,
