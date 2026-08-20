@@ -3,7 +3,7 @@ from __future__ import annotations
 import re, threading
 from typing import Any
 from .llm import LLMError, extract_with_gemini, estimate_tokens, PROMPT
-from .schema import validate_criteria
+from .schema import normalize_provider_output, validate_criteria
 
 _lock = threading.Lock(); _usage = {"briefs": 0, "input_tokens": 0, "output_tokens": 0, "source": "approximate"}
 
@@ -74,7 +74,7 @@ def parse_brief(text: str) -> dict[str, Any]:
         raw, stats = extract_with_gemini(text)
     except LLMError:
         raw = _fallback(text); stats = {"input_tokens": estimate_tokens(PROMPT + text), "output_tokens": estimate_tokens(str(raw)), "source": "approximate"}
-    try: result = validate_criteria(raw)
+    try: result = validate_criteria(normalize_provider_output(raw))
     except Exception:
         result = validate_criteria(_fallback(text)); stats["source"] = "approximate"
     _record(stats); return result

@@ -1,5 +1,5 @@
 {
-  "role_family": "backend engineering",
+  "role_family": "Engineering",
   "job_title": "Backend Engineer",
   "seniority_band": null,
   "years_experience": {
@@ -23,14 +23,14 @@
   "domain_context": [],
   "compensation": {
     "min": null,
-    "max": 30.0,
+    "max": 3000000.0,
     "currency": "INR",
-    "unit": "lakh",
+    "unit": null,
     "period": "annual",
-    "upper_bound": true
+    "upper_bound": false
   },
-  "headcount": null,
+  "headcount": 1,
   "exclusions": [
-    "remote work"
+    "remote"
   ]
 }

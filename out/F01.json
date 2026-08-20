@@ -1,5 +1,5 @@
 {
-  "role_family": "backend engineering",
+  "role_family": "Backend Engineering",
   "job_title": "Senior Backend Engineer",
   "seniority_band": "senior",
   "years_experience": {
@@ -11,7 +11,7 @@
     "Java",
     "Kotlin",
     "Kafka",
-    "Distributed systems",
+    "distributed systems",
     "PostgreSQL"
   ],
   "preferred_skills": [
@@ -25,7 +25,6 @@
   },
   "work_mode": "hybrid",
   "domain_context": [
-    "fintech",
     "payments"
   ],
   "compensation": null,

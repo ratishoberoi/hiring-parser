@@ -17,7 +17,7 @@ def extract_with_gemini(brief: str, timeout: float = 20.0) -> tuple[dict[str, An
     key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
     if not key:
         raise LLMError("GEMINI_API_KEY is not configured")
-    model = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+    model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
     payload = {"system_instruction": {"parts": [{"text": PROMPT}]}, "contents": [{"parts": [{"text": brief}]}], "generationConfig": {"temperature": 0, "responseMimeType": "application/json"}}
     request = urllib.request.Request(url, data=json.dumps(payload).encode(), headers={"Content-Type": "application/json"}, method="POST")

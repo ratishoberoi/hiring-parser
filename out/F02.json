@@ -1,6 +1,6 @@
 {
-  "role_family": "backend engineering",
-  "job_title": "Senior Backend Engineer",
+  "role_family": "backend",
+  "job_title": null,
   "seniority_band": "senior",
   "years_experience": {
     "min": 5.0,
@@ -8,8 +8,8 @@
     "raw": "5-8 yrs"
   },
   "must_have_skills": [
-    "Java",
-    "Kafka"
+    "Kafka",
+    "Java"
   ],
   "preferred_skills": [],
   "acceptable_skills": [],
@@ -25,7 +25,7 @@
     "max": 55.0,
     "currency": "INR",
     "unit": "LPA",
-    "period": "annual",
+    "period": "unknown",
     "upper_bound": false
   },
   "headcount": 3,
