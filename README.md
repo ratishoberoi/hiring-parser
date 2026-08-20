@@ -37,7 +37,7 @@ python -m parser --input briefs/F03.txt --out out/F03.json
 HTTP:
 
 ```bash
-uvicorn parser.api:app --reload
+uvicorn app:app --reload
 curl -X POST http://127.0.0.1:8000/parse \
   -H 'content-type: application/json' \
   -d '{"text":"backend engineer in Pune"}'
